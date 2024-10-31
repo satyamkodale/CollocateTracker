@@ -10,12 +10,14 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO ADD VALIDATION
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
 public class User {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,11 +31,6 @@ public class User {
     @OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL)
     private List<Issue> assignedIssues = new ArrayList<>();
 
-
     private int projectSize;
-
-
-
-
 
 }

@@ -62,6 +62,12 @@ dependencies {
 
 	// JWT Jackson for JSON serialization/deserialization when working with JWT tokens
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.1'
+
+
+	//==================Starter Mail==========================
+	// Spring Boot Starter Mail for sending emails
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
 }
 
 

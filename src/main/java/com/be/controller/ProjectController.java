@@ -1,14 +1,19 @@
 package com.be.controller;
 
+import com.be.dto.request.InvitationRequest;
 import com.be.dto.response.MessageResponse;
 import com.be.entity.Chat;
+import com.be.entity.Invitation;
 import com.be.entity.Project;
 import com.be.entity.User;
+import com.be.service.InvitationService;
 import com.be.service.ProjectService;
 import com.be.service.UserService;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +37,10 @@ public class ProjectController {
 
     @Autowired
     private UserService userService;
+
+
+    @Autowired
+    private InvitationService invitationService;
 
 
     @PostMapping
@@ -110,6 +119,29 @@ public class ProjectController {
         List<Project> projects = projectService.getProjectsByTeam(user,category,tag);
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
+
+
+    //TODO FIX USER IS NOT GETTING ADDED
+    @PostMapping("/invite")
+    public ResponseEntity<MessageResponse> inviteToProject(
+            @RequestBody InvitationRequest req) throws MailException, MessagingException {
+
+        invitationService.sendInvitation(req.getEmail(), req.getProjectId());
+
+        MessageResponse res=new MessageResponse();
+        res.setMessage("User invited to the project successfully");
+        return ResponseEntity.ok(res);
+    }
+
+    @GetMapping("/accept_invitation")
+    public ResponseEntity<Invitation> acceptInvitation(@RequestParam String token,
+                                                       @RequestHeader("Authorization") String jwt) throws Exception {
+        User user=userService.findUserProfileByJwt(jwt);
+        Invitation invitation = invitationService.acceptInvitation(token,user.getId());
+        projectService.addUserToProject(invitation.getProjectId(),user.getId());
+        return new ResponseEntity<>(invitation,HttpStatus.ACCEPTED);
+    }
+
 
 
 }

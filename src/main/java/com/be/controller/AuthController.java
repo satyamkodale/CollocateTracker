@@ -3,8 +3,11 @@ package com.be.controller;
 import com.be.config.JwtProvider;
 import com.be.dto.request.LoginRequest;
 import com.be.dto.response.AuthResponse;
+import com.be.entity.Subscription;
 import com.be.entity.User;
+import com.be.repository.SubscriptionRepository;
 import com.be.repository.UserRepository;
+import com.be.service.SubscriptionService;
 import com.be.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +39,13 @@ public class AuthController {
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
+    @Autowired
+    private SubscriptionService subscriptionService;
+
+    @Autowired
+    private SubscriptionRepository subscriptionRepository;
+
+
 
     //signup
     @PostMapping("/signup")
@@ -56,7 +66,12 @@ public class AuthController {
         createdUser.setPassword(passwordEncoder.encode(password));
 
 
+
         User savedUser = userRepository.save(createdUser);
+
+        Subscription subscription = subscriptionService.createSubscription(savedUser);
+
+        subscriptionRepository.save(subscription);
 
         System.out.println("Registerd  User id "+savedUser.getId());
 

@@ -10,11 +10,12 @@ server:
 #    driver-class-name: ${DB_DRIVER_CLASS_NAME}
 spring:
   datasource:
-    name: COLLOCATETRACKER
-    url: jdbc:mysql://junction.proxy.rlwy.net:17080/railway
-    username: root
-    password: bepxGjRnhQRhhQgwNYEakZnGnbytjHYt
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: ${DB_NAME:COLLOCATETRACKER}
+    url: ${MYSQL_PUBLIC_URL:jdbc:mysql://junction.proxy.rlwy.net:17080/railway}
+    username: ${MYSQLUSER:root}
+    password: ${MYSQLPASSWORD:bepxGjRnhQRhhQgwNYEakZnGnbytjHYt}
+    driver-class-name: ${DB_DRIVER_CLASS_NAME:com.mysql.cj.jdbc.Driver}
+
 
   mail:
     host: ${MAIL_HOST:smtp.gmail.com}

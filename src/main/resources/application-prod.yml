@@ -1,0 +1,37 @@
+server:
+  port: 2310
+
+#spring:
+#  datasource:
+#    name: ${DB_NAME}
+#    url: ${MYSQL_PUBLIC_URL}
+#    username: ${MYSQLUSER}
+#    password: ${MYSQLPASSWORD}
+#    driver-class-name: ${DB_DRIVER_CLASS_NAME}
+spring:
+  datasource:
+    name: COLLOCATETRACKER
+    url: jdbc:mysql://junction.proxy.rlwy.net:17080/railway
+    username: root
+    password: bepxGjRnhQRhhQgwNYEakZnGnbytjHYt
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:satyamkodale@gmail.com}
+    password: ${MAIL_PASSWORD:vvsb uaxs gbws ejey}
+    properties:
+      mail:
+        smtp:
+          auth: ${MAIL_SMTP_AUTH:true}
+          starttls:
+            enable: ${MAIL_STARTTLS_ENABLE:true}
+
+
+razorpay:
+  api:
+    key: ${RAZORPAY_API_KEY:sample key}
+    secret: ${RAZORPAY_API_SECRET:sample_secret}
+
+

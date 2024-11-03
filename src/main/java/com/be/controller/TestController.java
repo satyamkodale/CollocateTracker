@@ -12,4 +12,9 @@ public class TestController {
 		return "working";
 	}
 
+	public String Welcome()
+	{
+		return "welcome";
+	}
+
 }

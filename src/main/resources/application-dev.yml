@@ -1,0 +1,29 @@
+server:
+  port: 1911
+
+spring:
+  datasource:
+    name: ${DB_NAME:COLLOCATETRACKER}
+    url: ${DB_URL:jdbc:mysql://localhost:3306/collocatetracker_DB}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:Satyam@197026}
+    driver-class-name: ${DB_DRIVER_CLASS_NAME:com.mysql.cj.jdbc.Driver}
+
+
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:satyamkodale@gmail.com}
+    password: ${MAIL_PASSWORD:vvsb uaxs gbws ejey}
+    properties:
+      mail:
+        smtp:
+          auth: ${MAIL_SMTP_AUTH:true}
+          starttls:
+            enable: ${MAIL_STARTTLS_ENABLE:true}
+
+razorpay:
+  api:
+    key: your_api_key_here
+    secret: your_api_secret_here

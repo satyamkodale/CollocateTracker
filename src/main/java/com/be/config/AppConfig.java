@@ -48,7 +48,8 @@ public class AppConfig {
                 cfg.setAllowedOrigins(Arrays.asList(
                         "http://localhost:3000",
                         "http://localhost:5173",
-                        "https://project-management-react-plum.vercel.app"));
+                        "https://project-management-react-plum.vercel.app",
+                        "https://collocatetrackerfe.netlify.app"));
                 cfg.setAllowedMethods(Collections.singletonList("*"));  //post, get, put , delete , (*) for all
                 cfg.setAllowCredentials(true);
                 cfg.setAllowedHeaders(Collections.singletonList("*"));
